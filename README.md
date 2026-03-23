@@ -17,18 +17,8 @@
       color: white;
       overflow: hidden;
     }
-
-    h1 {
-      margin-bottom: 10px;
-      font-size: 2rem;
-      color: #e94560;
-    }
-
-    #scoreboard {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
+    h1 { margin-bottom: 10px; font-size: 2rem; color: #e94560; }
+    #scoreboard { font-size: 1.2rem; margin-bottom: 20px; }
     #arena {
       position: relative;
       width: 600px;
@@ -38,7 +28,6 @@
       border-radius: 12px;
       overflow: hidden;
     }
-
     #target {
       position: absolute;
       width: 60px;
@@ -46,19 +35,8 @@
       background: #e94560;
       border-radius: 50%;
       cursor: pointer;
-      transition: transform 0.1s;
     }
-
-    #target:hover {
-      transform: scale(1.1);
-    }
-
-    #message {
-      margin-top: 20px;
-      font-size: 1rem;
-      color: #a8a8b3;
-    }
-
+    #message { margin-top: 20px; font-size: 1rem; color: #a8a8b3; }
     #start-btn {
       margin-top: 15px;
       padding: 12px 30px;
@@ -69,21 +47,14 @@
       font-size: 1rem;
       cursor: pointer;
     }
-
-    #start-btn:hover {
-      background: #c73652;
-    }
   </style>
 </head>
 <body>
-
   <h1>🎯 Click the Target!</h1>
   <div id="scoreboard">Score: <span id="score">0</span> &nbsp;|&nbsp; Time: <span id="timer">15</span>s</div>
-
   <div id="arena">
     <div id="target" style="display:none;"></div>
   </div>
-
   <div id="message">Press Start to play!</div>
   <button id="start-btn" onclick="startGame()">Start Game</button>
 
@@ -92,7 +63,7 @@
     let timeLeft = 15;
     let interval;
     let animFrame;
-    let x = 0, y = 0;
+    let x = 100, y = 100;
     let dx = 3, dy = 3;
 
     const target = document.getElementById('target');
@@ -105,16 +76,12 @@
     function moveTarget() {
       const arenaW = arena.offsetWidth - 60;
       const arenaH = arena.offsetHeight - 60;
-
       x += dx;
       y += dy;
-
       if (x <= 0 || x >= arenaW) dx = -dx;
       if (y <= 0 || y >= arenaH) dy = -dy;
-
       target.style.left = x + 'px';
       target.style.top = y + 'px';
-
       animFrame = requestAnimationFrame(moveTarget);
     }
 
@@ -134,16 +101,10 @@
       messageEl.textContent = 'Click the moving circle as fast as you can!';
       startBtn.disabled = true;
       startBtn.style.background = '#555';
-
-      x = 100;
-      y = 100;
-      dx = 3;
-      dy = 3;
-
+      x = 100; y = 100; dx = 3; dy = 3;
       target.style.display = 'block';
       cancelAnimationFrame(animFrame);
       moveTarget();
-
       clearInterval(interval);
       interval = setInterval(() => {
         timeLeft--;
@@ -160,6 +121,5 @@
       }, 1000);
     }
   </script>
-
 </body>
 </html>
